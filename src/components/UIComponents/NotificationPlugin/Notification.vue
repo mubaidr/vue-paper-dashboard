@@ -35,7 +35,7 @@ export default {
     },
     timeout: {
       type: Number,
-      default: 5000
+      default: 500000
     }
   },
   data () {
@@ -49,6 +49,8 @@ export default {
       return `alert-${this.type}`
     },
     customPosition () {
+      console.log(this.$notifications.getLastNotification(this.horizontalAlign, this.verticalAlign), this.$refs)
+
       let initialMargin = 20
       let alertHeight = 90
       let sameAlertsCount = this.$notifications.state.filter((alert) => {
