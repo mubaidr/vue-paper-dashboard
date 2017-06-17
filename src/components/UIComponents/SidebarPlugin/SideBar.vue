@@ -1,13 +1,16 @@
 <template>
   <div :class="sidebarClasses" :data-background-color="backgroundColor" :data-active-color="activeColor">
     <!--
-            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+            Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black | darkblue"
             Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
         -->
     <!-- -->
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
         <a href="#" class="simple-text">
+            <div class="logo-img">
+                <img src="static/img/vue-logo.png" alt="">
+            </div>
           Paper Dashboard
         </a>
       </div>
@@ -16,21 +19,20 @@
         <router-link v-for="(link,index) in sidebarLinks" :to="link.path" tag="li" :ref="link.name">
           <a>
             <i :class="link.icon"></i>
-  
+
             <p>{{link.name}}
             </p>
           </a>
         </router-link>
       </ul>
       <moving-arrow :move-y="arrowMovePx">
-  
+
       </moving-arrow>
     </div>
   </div>
 </template>
 <script>
-  import MovingArrow from 'src/components/UIComponents/MovingArrow.vue'
-  // import { mapGetters } from 'vuex'
+  import MovingArrow from './MovingArrow.vue'
   export default {
     props: {
       type: {
@@ -45,17 +47,21 @@
         type: String,
         default: 'black',
         validator: (value) => {
-          let acceptedValues = ['white', 'black']
+          let acceptedValues = ['white', 'black', 'darkblue']
           return acceptedValues.indexOf(value) !== -1
         }
       },
       activeColor: {
         type: String,
-        default: 'danger',
+        default: 'success',
         validator: (value) => {
-          let acceptedValues = ['primary', 'info', ' success', 'warning', 'danger']
+          let acceptedValues = ['primary', 'info', 'success', 'warning', 'danger']
           return acceptedValues.indexOf(value) !== -1
         }
+      },
+      sidebarLinks: {
+        type: Array,
+        default: () => []
       }
     },
     components: {
@@ -88,42 +94,7 @@
       return {
         linkHeight: 60,
         activeLinkIndex: 0,
-        sidebarLinks: [{
-          name: 'Dashboard',
-          icon: 'ti-panel',
-          path: '/admin/overview'
-        },
-        {
-          name: 'User Profile',
-          icon: 'ti-user',
-          path: '/admin/stats'
-        },
-        {
-          name: 'Table List',
-          icon: 'ti-view-list-alt',
-          path: '/admin/table-list'
-        },
-        {
-          name: 'Typography',
-          icon: 'ti-text',
-          path: '/admin/typography'
-        },
-        {
-          name: 'Icons',
-          icon: 'ti-pencil-alt2',
-          path: '/admin/icons'
-        },
-        {
-          name: 'Maps',
-          icon: 'ti-map',
-          path: '/admin/maps'
-        },
-        {
-          name: 'Notifications',
-          icon: 'ti-bell',
-          path: '/admin/notifications'
-        }
-        ],
+
         windowWidth: 0,
         isWindows: false,
         hasAutoHeight: false
@@ -152,5 +123,5 @@
 
 </script>
 <style>
-  
+
 </style>

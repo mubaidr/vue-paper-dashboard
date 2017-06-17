@@ -1,5 +1,4 @@
 <template>
-  <div class="container-fluid">
     <div class="card card-map">
       <div class="header">
         <h4 class="title">Google Maps</h4>
@@ -8,12 +7,11 @@
         <div id="map"></div>
       </div>
     </div>
-  </div>
 </template>
 <script>
   export default {
     mounted () {
-      var myLatlng = new google.maps.LatLng(40.748817, -73.985428)
+      var myLatlng = new window.google.maps.LatLng(40.748817, -73.985428)
       var mapOptions = {
         zoom: 13,
         center: myLatlng,
@@ -58,9 +56,9 @@
         }]
 
       }
-      var map = new google.maps.Map(document.getElementById('map'), mapOptions)
+      var map = new window.google.maps.Map(document.getElementById('map'), mapOptions)
 
-      var marker = new google.maps.Marker({
+      var marker = new window.google.maps.Marker({
         position: myLatlng,
         title: 'Hello World!'
       })
@@ -72,5 +70,5 @@
 
 </script>
 <style>
-  
+
 </style>
